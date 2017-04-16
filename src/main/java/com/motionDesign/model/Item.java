@@ -1,13 +1,15 @@
-package com.motionDesign.test;
+package com.motionDesign.model;
+
+import java.math.BigDecimal;
 
 public class Item {
 
     private int id;
     private int length;
     private int quantity;
-    private double weight;
+    private BigDecimal weight;
 
-    public Item(int id, int length, int quantity, double weight) {
+    public Item(int id, int length, int quantity, BigDecimal weight) {
         this.id = id;
         this.length = length;
         this.quantity = quantity;
@@ -30,17 +32,17 @@ public class Item {
         return quantity;
     }
 
-    public double getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
 
-    public double getTotalWeight() {
-        return weight * quantity;
+    public BigDecimal getTotalWeight() {
+        return weight.multiply(BigDecimal.valueOf(quantity));
     }
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s", id, length, quantity, weight);
+        return id + "," +length + "," +quantity + "," + weight;
     }
 }
