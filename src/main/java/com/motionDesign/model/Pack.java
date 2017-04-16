@@ -76,7 +76,7 @@ public class Pack {
             packLength = Math.max(packLength, item.getLength());
         }
         sb.append("Pack Length: ").append(packLength);
-        sb.append(", Pack Weight: ").append(currentWeight).append("\n");
+        sb.append(", Pack Weight: ").append(currentWeight.stripTrailingZeros()).append("\n");
         return sb.toString();
     }
 }
