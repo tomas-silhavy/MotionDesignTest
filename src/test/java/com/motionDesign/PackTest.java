@@ -11,8 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.motionDesign.PackPlanner.SortOrder.LONG_TO_SHORT;
-import static com.motionDesign.PackPlanner.SortOrder.SHORT_TO_LONG;
+import static com.motionDesign.PackPlanner.SortOrder.*;
 import static org.testng.Assert.assertEquals;
 
 public class PackTest {
@@ -23,7 +22,7 @@ public class PackTest {
 
     @BeforeMethod
     public void setUp(){
-        pp = new PackPlanner(PackPlanner.SortOrder.NATURAL, 2, new BigDecimal(40));
+        pp = new PackPlanner(NATURAL, 2, new BigDecimal(40));
         items = new ArrayList<>();
         items.add(new Item(10, 15, 5, new BigDecimal(13)));
         items.add(new Item(20, 26, 9, new BigDecimal(5)));
@@ -33,7 +32,7 @@ public class PackTest {
     @Test
     public void testAddItemNatural() throws Exception {
         List<Pack> packs = pp.packUp(items);
-        packs.forEach(System.out::println);
+//        packs.forEach(System.out::println);
         assertEquals(packs.size(), 16);
         assertEquals(packs.stream().map(Pack::getItems).flatMap(List::stream).mapToInt(Item::getQuantity).sum(), 31);
         Set<Integer> set = new LinkedHashSet<>();
@@ -47,7 +46,7 @@ public class PackTest {
         pp.setMaxItemCount(4);
         pp.setMaxPackWeight(new BigDecimal(16));
         List<Pack> packs = pp.packUp(items);
-        packs.forEach(System.out::println);
+//        packs.forEach(System.out::println);
         assertEquals(packs.size(), 12);
         assertEquals(packs.stream().map(Pack::getItems).flatMap(List::stream).mapToInt(Item::getQuantity).sum(), 31);
         Set<Integer> set = new LinkedHashSet<>();
@@ -61,7 +60,7 @@ public class PackTest {
         pp.setMaxItemCount(12);
         pp.setMaxPackWeight(new BigDecimal(34));
         List<Pack> packs = pp.packUp(items);
-        packs.forEach(System.out::println);
+//        packs.forEach(System.out::println);
         assertEquals(packs.size(), 6);
         assertEquals(packs.stream().map(Pack::getItems).flatMap(List::stream).mapToInt(Item::getQuantity).sum(), 31);
         Set<Integer> set = new LinkedHashSet<>();
